@@ -3,15 +3,14 @@ package Day1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class Day1 {
+public class Solution {
 
     public static void main(String[] args) {
         ArrayList<String> lines = new ArrayList<>();
         try {
-            File myObj = new File("src/input.txt");
+            File myObj = new File("src/Day1/input.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine())
                 lines.add(myReader.nextLine());
@@ -46,25 +45,7 @@ public class Day1 {
 
     static int part2(ArrayList<String> lines) {
         int sum = 0;
-        HashMap<String, Integer> numsMap = new HashMap<>();
-        numsMap.put("1", 1);
-        numsMap.put("2", 2);
-        numsMap.put("3", 3);
-        numsMap.put("4", 4);
-        numsMap.put("5", 5);
-        numsMap.put("6", 6);
-        numsMap.put("7", 7);
-        numsMap.put("8", 8);
-        numsMap.put("9", 9);
-        numsMap.put("one", 1);
-        numsMap.put("two", 2);
-        numsMap.put("three", 3);
-        numsMap.put("four", 4);
-        numsMap.put("five", 5);
-        numsMap.put("six", 6);
-        numsMap.put("seven", 7);
-        numsMap.put("eight", 8);
-        numsMap.put("nine", 9);
+        String[] numStrings = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
 
         for (String line : lines) {
             int first = 0;
@@ -72,10 +53,11 @@ public class Day1 {
 
             for (int i = 0; i < line.length(); i++) {
                 int digit = 0;
-                for (String key : numsMap.keySet()) {
-                    if (i + key.length() <= line.length()) {
-                        if (line.substring(i, i + key.length()).equals(key)) {
-                            digit = numsMap.get(key);
+                for (int j = 0; j < numStrings.length; j++) {
+                    String str = numStrings[j];
+                    if (i + str.length() <= line.length()) {
+                        if (line.substring(i, i + str.length()).equals(str)) {
+                            digit = (j % 9) + 1;
                             break;
                         }
                     }
