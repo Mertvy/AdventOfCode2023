@@ -1,24 +1,12 @@
 package Day1;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import Util.FileReader;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Solution {
 
     public static void main(String[] args) {
-        ArrayList<String> lines = new ArrayList<>();
-        try {
-            File myObj = new File("src/Day1/input.txt");
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine())
-                lines.add(myReader.nextLine());
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+        ArrayList<String> lines = FileReader.fileLines("src/Day1/input.txt");
 
         System.out.println(part1(lines));
         System.out.println(part2(lines));
@@ -56,7 +44,7 @@ public class Solution {
                 for (int j = 0; j < numStrings.length; j++) {
                     String str = numStrings[j];
                     if (i + str.length() <= line.length()) {
-                        if (line.substring(i, i + str.length()).equals(str)) {
+                        if (line.startsWith(str, i)) {
                             digit = (j % 9) + 1;
                             break;
                         }
