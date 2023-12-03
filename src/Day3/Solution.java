@@ -68,20 +68,18 @@ public class Solution {
     static HashSet<Number> getAdjacentNumbers(ArrayList<String> lines, int row, int column) {
         HashSet<Number> adjNums = new HashSet<>();
         adjNums.add(getNumber(lines, row - 1, column - 1));
-        adjNums.add(getNumber(lines, row - 1, column          ));
+        adjNums.add(getNumber(lines, row - 1, column));
         adjNums.add(getNumber(lines, row - 1, column + 1));
-        adjNums.add(getNumber(lines, row, column - 1         ));
-        adjNums.add(getNumber(lines, row, column + 1         ));
+        adjNums.add(getNumber(lines, row, column - 1));
+        adjNums.add(getNumber(lines, row, column + 1));
         adjNums.add(getNumber(lines, row + 1, column - 1));
-        adjNums.add(getNumber(lines, row + 1, column          ));
+        adjNums.add(getNumber(lines, row + 1, column));
         adjNums.add(getNumber(lines, row + 1, column + 1));
         if (adjNums.contains(null)) adjNums.remove(null);
         return adjNums;
     }
 
-    static boolean isSymbol(char c) {
-        return (!Character.isDigit(c) && c != '.');
-    }
+    static boolean isSymbol(char c) {return (!Character.isDigit(c) && c != '.');}
 
     static Number getNumber(ArrayList<String> lines, int row, int index) {
         String line = lines.get(row);
