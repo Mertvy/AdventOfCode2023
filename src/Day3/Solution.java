@@ -1,6 +1,6 @@
 package Day3;
 
-import Util.FileReader;
+import Util.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,6 +8,7 @@ import java.util.HashSet;
 public class Solution {
     public static void main(String[] args) {
         ArrayList<String> lines = FileReader.fileLines("src/Day3/input.txt");
+        Tools.padInput(lines, '.');
 
         System.out.println(part1(lines));
         System.out.println(part2(lines));
@@ -15,9 +16,9 @@ public class Solution {
 
     static int part1(ArrayList<String> lines) {
         int sum = 0;
-        for (int i = 0; i < lines.size(); i++) {
+        for (int i = 1; i < lines.size() - 1; i++) {
             String line = lines.get(i);
-            for (int j = 0; j < line.length(); j++) {
+            for (int j = 1; j < line.length() - 1; j++) {
                 if (Character.isDigit(line.charAt(j))) {
                     boolean adjacentSymbol = false;
                     StringBuilder number = new StringBuilder();
@@ -44,7 +45,6 @@ public class Solution {
                 if (adjacentNums.size() == 2) {
                     int gearRatio = 1;
                     for (Number n : adjacentNums) gearRatio *= n.value;
-                    System.out.println("(" + j + "," + i + "): " + gearRatio);
                     sum += gearRatio;
                 }
             }
@@ -54,27 +54,27 @@ public class Solution {
     }
 
     static boolean adjacentSymbol(ArrayList<String> lines, int row, int column) {
-        try {if (isSymbol(lines.get(row - 1).charAt(column - 1))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row - 1).charAt(column    ))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row - 1).charAt(column + 1))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row).charAt(column - 1    ))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row).charAt(column + 1    ))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row + 1).charAt(column - 1))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row + 1).charAt(column    ))) return true;} catch (Exception e) {;}
-        try {if (isSymbol(lines.get(row + 1).charAt(column + 1))) return true;} catch (Exception e) {;}
+        if (isSymbol(lines.get(row - 1).charAt(column - 1))) return true;
+        if (isSymbol(lines.get(row - 1).charAt(column    ))) return true;
+        if (isSymbol(lines.get(row - 1).charAt(column + 1))) return true;
+        if (isSymbol(lines.get(row).charAt(column - 1    ))) return true;
+        if (isSymbol(lines.get(row).charAt(column + 1    ))) return true;
+        if (isSymbol(lines.get(row + 1).charAt(column - 1))) return true;
+        if (isSymbol(lines.get(row + 1).charAt(column    ))) return true;
+        if (isSymbol(lines.get(row + 1).charAt(column + 1))) return true;
         return false;
     }
 
     static HashSet<Number> getAdjacentNumbers(ArrayList<String> lines, int row, int column) {
         HashSet<Number> adjNums = new HashSet<>();
-        try {adjNums.add(getNumber(lines, row - 1, column - 1));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row - 1, column          ));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row - 1, column + 1));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row, column - 1         ));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row, column + 1         ));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row + 1, column - 1));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row + 1, column          ));} catch (Exception e) {;}
-        try {adjNums.add(getNumber(lines, row + 1, column + 1));} catch (Exception e) {;}
+        adjNums.add(getNumber(lines, row - 1, column - 1));
+        adjNums.add(getNumber(lines, row - 1, column          ));
+        adjNums.add(getNumber(lines, row - 1, column + 1));
+        adjNums.add(getNumber(lines, row, column - 1         ));
+        adjNums.add(getNumber(lines, row, column + 1         ));
+        adjNums.add(getNumber(lines, row + 1, column - 1));
+        adjNums.add(getNumber(lines, row + 1, column          ));
+        adjNums.add(getNumber(lines, row + 1, column + 1));
         if (adjNums.contains(null)) adjNums.remove(null);
         return adjNums;
     }
@@ -90,7 +90,7 @@ public class Solution {
         StringBuilder numBuilder = new StringBuilder();
         while ((index - 1) >= 0 && Character.isDigit(line.charAt(index - 1))) index--;
         int start = index;
-        while (index < line.length() && Character.isDigit(line.charAt(index))) {
+        while (Character.isDigit(line.charAt(index))) {
             numBuilder.append(line.charAt(index));
             index++;
         }
