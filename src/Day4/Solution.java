@@ -33,16 +33,13 @@ public class Solution {
 
     static int processCard(String card) {
         HashSet<String> winningNumsSet = new HashSet<>();
-        String[] winningNums = card.split(Pattern.quote(" | "))[0].split(Pattern.quote(": "))[1].strip().split(" ");
+        String[] winningNums = card.split(Pattern.quote(" | "))[0].split(Pattern.quote(": "))[1].strip().split(" +");
         for (String num : winningNums) winningNumsSet.add(num);
 
-
         HashSet<String> cardNumsSet = new HashSet<>();
-        String[] cardNums = card.split(Pattern.quote(" | "))[1].strip().split(" ");
+        String[] cardNums = card.split(Pattern.quote(" | "))[1].strip().split(" +");
         for (String num : cardNums) cardNumsSet.add(num);
 
-        winningNumsSet.remove("");
-        cardNumsSet.remove("");
 
         int totalWinners = 0;
         for (String num : cardNumsSet) if (winningNumsSet.contains(num)) totalWinners++;
