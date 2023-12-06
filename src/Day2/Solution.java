@@ -24,10 +24,9 @@ public class Solution {
 
     static int part2(ArrayList<String> lines) {
         int sum = 0;
-        for (int i = 0; i < lines.size(); i++) {
-            String line = lines.get(i);
+        for (String line : lines) {
             int[] maxRGBCounts = maxRBGCounts(line);
-            sum += (maxRGBCounts[0]*maxRGBCounts[1]*maxRGBCounts[2]);
+            sum += (maxRGBCounts[0] * maxRGBCounts[1] * maxRGBCounts[2]);
         }
         return sum;
     }

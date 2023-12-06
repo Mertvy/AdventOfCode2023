@@ -54,15 +54,15 @@ public class Solution {
     }
 
     static boolean adjacentSymbol(ArrayList<String> lines, int row, int column) {
-        if (isSymbol(lines.get(row - 1).charAt(column - 1))) return true;
-        if (isSymbol(lines.get(row - 1).charAt(column    ))) return true;
-        if (isSymbol(lines.get(row - 1).charAt(column + 1))) return true;
-        if (isSymbol(lines.get(row).charAt(column - 1    ))) return true;
-        if (isSymbol(lines.get(row).charAt(column + 1    ))) return true;
-        if (isSymbol(lines.get(row + 1).charAt(column - 1))) return true;
-        if (isSymbol(lines.get(row + 1).charAt(column    ))) return true;
-        if (isSymbol(lines.get(row + 1).charAt(column + 1))) return true;
-        return false;
+        return (   isSymbol(lines.get(row - 1).charAt(column - 1))
+                || isSymbol(lines.get(row - 1).charAt(column))
+                || isSymbol(lines.get(row - 1).charAt(column + 1))
+                || isSymbol(lines.get(row).charAt(column - 1))
+                || isSymbol(lines.get(row).charAt(column + 1))
+                || isSymbol(lines.get(row + 1).charAt(column - 1))
+                || isSymbol(lines.get(row + 1).charAt(column))
+                || isSymbol(lines.get(row + 1).charAt(column + 1))
+        );
     }
 
     static HashSet<Number> getAdjacentNumbers(ArrayList<String> lines, int row, int column) {
@@ -75,7 +75,7 @@ public class Solution {
         adjNums.add(getNumber(lines, row + 1, column - 1));
         adjNums.add(getNumber(lines, row + 1, column));
         adjNums.add(getNumber(lines, row + 1, column + 1));
-        if (adjNums.contains(null)) adjNums.remove(null);
+        adjNums.remove(null);
         return adjNums;
     }
 

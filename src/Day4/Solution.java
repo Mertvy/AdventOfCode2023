@@ -2,6 +2,7 @@ package Day4;
 
 import Util.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.regex.Pattern;
 
@@ -34,11 +35,11 @@ public class Solution {
     static int processCard(String card) {
         HashSet<String> winningNumsSet = new HashSet<>();
         String[] winningNums = card.split(Pattern.quote(" | "))[0].split(Pattern.quote(": "))[1].strip().split(" +");
-        for (String num : winningNums) winningNumsSet.add(num);
+        Collections.addAll(winningNumsSet, winningNums);
 
         HashSet<String> cardNumsSet = new HashSet<>();
         String[] cardNums = card.split(Pattern.quote(" | "))[1].strip().split(" +");
-        for (String num : cardNums) cardNumsSet.add(num);
+        Collections.addAll(cardNumsSet, cardNums);
 
 
         int totalWinners = 0;

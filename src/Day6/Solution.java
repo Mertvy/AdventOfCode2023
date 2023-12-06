@@ -25,10 +25,10 @@ public class Solution {
         for (int i = 0; i < distances.length; i++) {
             int time = times[i], distance = distances[i];
 
-            int upper = (int) Math.ceil(0.5*(time+Math.sqrt(time*time-4*distance)) - 1);
-            int lower = (int) Math.floor(0.5*(time-Math.sqrt(time*time-4*distance)) + 1);
+            int upper = (int) Math.ceil(0.5*(time+Math.sqrt(time*time-4*distance)));
+            int lower = (int) Math.floor(0.5*(time-Math.sqrt(time*time-4*distance)));
 
-            answer *= (upper - lower + 1);
+            answer *= (upper - lower - 1);
         }
         return answer;
     }
@@ -39,9 +39,9 @@ public class Solution {
         String distanceString = lines.get(1).split(":")[1].strip().replace(" ", "");
         long distance = Long.parseLong(distanceString);
 
-        long upper = (int) Math.ceil(0.5*(time+Math.sqrt(time*time-4*distance)) - 1);
-        long lower = (int) Math.floor(0.5*(time-Math.sqrt(time*time-4*distance)) + 1);
+        long upper = (int) Math.ceil(0.5*(time+Math.sqrt(time*time-4*distance)));
+        long lower = (int) Math.floor(0.5*(time-Math.sqrt(time*time-4*distance)));
 
-        return upper - lower + 1;
+        return upper - lower - 1;
     }
 }
