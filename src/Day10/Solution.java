@@ -38,7 +38,6 @@ public class Solution {
 
         HashSet<Pipe> mainPipes = new HashSet<>();
         for (Pipe pipe : pipeMap.values()) {
-
             if (pipe.shape != '.') {
                 mainPipes.add(pipe);
             }
@@ -48,7 +47,6 @@ public class Solution {
         for (Pipe pipe : mainPipes) if (pipe.connected[0] == start || pipe.connected[1] == start) adjStart.add(pipe);
         start.connected[0] = adjStart.get(0);
         start.connected[1] = adjStart.get(1);
-
 
         System.out.println(part1(start));
         System.out.println(part2(pipeMap, lines.size(), lines.get(0).length()));
